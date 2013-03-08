@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -101,7 +102,10 @@ namespace NuGetGallery
 
             // To make app startup not directly depend on the database,
             // we set the migrations to run when the database is first used, instead of doing it up-front.
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<EntitiesContext,MigrationsConfiguration>());
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<EntitiesContext,MigrationsConfiguration>());
+
+            // Check the latest migration version
+            MigrationManager.Initialize();
         }
 
         private static void DynamicDataPostStart(IConfiguration configuration)
